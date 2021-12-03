@@ -1,0 +1,31 @@
+image: asia.gcr.io/projectID/app
+
+replicas: 1
+revisionHistoryLimit: 3
+minReadySeconds: 10
+strategy:
+  rollingUpdate:
+    maxSurge: 0%
+    maxUnavailable: 50%
+
+env: dev
+
+api:
+  labels:
+    version: v1
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limit:
+      cpu: "100m"
+      memory: "128Mi"
+
+serviceAccountName: app
+
+autoscaler:
+  minReplicas: 1
+  maxReplicas: 1
+  metrics:
+    cpu:
+      targetAverageUtilization: 50

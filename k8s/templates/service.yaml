@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/app-protocols: '{"grpc":"HTTP2"}'
+  name: stream-service
+  labels:
+    app: stream
+spec:
+  clusterIP: None
+  ports:
+  - name: grpc
+    port: 15002
+    targetPort: 15002
+    protocol: TCP
+  selector:
+    app: stream

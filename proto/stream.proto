@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "./;grpc";
+
+package grpc;
+
+// The greeting service definition.
+service StreamService {
+  //ファンミーティングに参加してるファンを退出させる
+  rpc GetCallStatus (GetCallStatusRequest) returns (stream GetCallStatusResponse) {}
+}
+
+
+message GetCallStatusRequest {
+  string influencer_uuid = 1;
+}
+
+message GetCallStatusResponse {
+  bool on_call = 1;
+}
